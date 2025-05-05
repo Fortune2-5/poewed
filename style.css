@@ -167,6 +167,24 @@ nav a {
         display: none;
     }
 
+.logo {
+    padding: 20px 0;
+        text-align: center;
+}
+.navbutton {
+    font-size: 14px;
+    padding: 10px 20px;
+    margin-left: -40px;
+}
+
+.mob-wrapper {
+    padding-right: 10px;
+}
+
+.container {
+    padding-top: 20px;
+}
+
 
 
 }
@@ -223,6 +241,5 @@ footer {
 }
 
 footer p{
-    text-align: center;
+ text-align: center;
 }
-
