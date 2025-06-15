@@ -1,46 +1,212 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3">
     <title>Murto - Gallery Browse Products and Order them</title>
     <link rel="stylesheet" href="style.css">
-<style>
-       h1 {
-        text-align: center;
+    <style>
+
+      *body{
+        margin: 0;
+        padding: 0;
+      }
+        h1 {
+            text-align: center;
+        }
+
+        .product-container {
+            display: flex;
+            gap:20PX;
+            justify-content: space-between;
+            flex-direction:row;
+           
+        }
+
+        .product {
+            text-align: center;
+            display: grid;
+            grid-column: auto;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+      
+
+        .product-item:hover{
+          transform: scale(1.1);
+        }
+    
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+      
+
+        .product-title {
+            margin-top: 10px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .add-to-cart {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .cart-icon img {
+            width: 30px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            color: rgb(17, 17, 17);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 18px;
+        }
+   
+    #cartModal {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background: #000000;
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      z-index: 1001;
+    }
+
+    #cartModal h3 {
+      margin-top: 0;
+    }
+
+    .cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .checkout-btn {
+      background-color: green;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+   
+    #checkoutModal {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      width: 320px;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1002;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    #checkoutModal input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #checkoutModal button {
+      background-color: #000;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
     }
     
-    .product-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
+.contact-left-title hr{
+    border: none;
+    width: 120;
+    height: 5;
+    background-color: #1ea7b6;
+    border-radius: 20px;
+    margin-bottom: 20;
+}
     
-    .product {
-        width: 200px;
-        text-align: center;
-        margin: 10px;
-    }
-    
-    .product img {
-        width: 100%;
-        border-radius: 10px;
-    }
-    
-    .product-title {
-        margin-top: 10px;
-        font-weight: bold;
-        color: black;
-    }
-    
-    .product-price {
-        font-size: 18px;
-        color: #555;
-    }
-</style>
+  </style>
 </head>
 <body>
-    <div class="header-container">
+
+ 
+  <div class="cart-icon" onclick="toggleCart()">
+    <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Cart">
+    <div class="cart-count" id="cart-count">0</div>
+  </div>
+
+  
+  <div id="cartModal">
+    <h3>Your Cart</h3>
+    <div class="cart-items" id="cart-items"></div>
+    <div><strong>Total: R<span id="cart-total">0</span></strong></div>
+    <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
+  </div>
+
+  
+  <div id="checkoutModal">
+    <h3>Checkout</h3>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="address" placeholder="Shipping Address" required>
+    <button onclick="submitOrder()">Pay Now</button>
+  </div>
+
+  
+  
+  
+    </div>
+    
+     
+      
+      
+       <div class="header-container">
         <header>
             <div class="logo">
                 <a href="index.html"><img src="IMAGES/20220612_180323.png" alt="" style="width: 200px;"></a>
@@ -53,100 +219,184 @@
             </nav>
 
             <div class="mob-wrapper">
-
                 <img src="images/icon-burger-menu.svg" alt="Mobile Menu Icon" style="width: 40px;" class="burgermenu">
-
                 <div class="mob-nav">
                     <a href="index.html" class="navbutton">HOMEPAGE</a>
                     <a href="about.html" class="navbutton">ABOUT</a>
                     <a href="contact.html" class="navbutton">CONTACT</a>
                 </div>
+        </header>
+    </div>
+    <div class="product">
+    <div style="height: 200px;"></div>
+    <h3 class="WELCOME"><ins>PRODUCTS & PRICES</ins></h3>
+    <br>
+    <div class="product-container">
+        <div class="product-item">
+            <img src="IMAGES/20220627_065333.png" alt="Bucket Hat" height="300px">
+            <div class="product-title">Bucket Hat</div>
+            <div class="product-price">R130</div>
+            <button class="add-to-cart" onclick="addToCart('Bucket Hat', 130)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
+  
+        <div class="product-item">
+            <img id="myImage" src="IMAGES/6.1.jpeg" alt="T-Shirt" height="300px">
+            <div class="product-title">T-Shirt</div>
+            <div class="product-price">R250</div>
+            <button class="add-to-cart" onclick="addToCart('T-Shirt', 250)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
 
-            </header>
+        <div class="product-item">
+            <img src="IMAGES/7.jpeg" alt="T-Shirt" height="300px">
+            <div class="product-title">T-Shirt</div>
+            <div class="product-price">R170</div>
+            <button class="add-to-cart" onclick="addToCart('T-Shirt', 170)">Add to Cart</button>
+            <hr>
+            <br>
+        </div> 
 
-            </div>
+        <div class="product-item">
+            <img src="IMAGES/8.jpeg" alt="T-Shirt" height="300px">
+            <div class="product-title">T-Shirt</div>
+            <div class="product-price">R189</div>
+            <button class="add-to-cart" onclick="addToCart('T-Shirt', 189)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
 
-            <div style="height: 200px;"></div>
-            <h3 class="WELCOME">PRODUCTS & PRICES</h3>
-            <div class="product-container">
-                <div class="product">
-                    <img src="IMAGES/20220627_065333.png" alt="Product 1">
-                    <div class="product-title">Bucket Hat</div>
-                    <div class="product-price">R130</div>
-                </div>
-                
-                <div class="product">
-                    <img id="myImage" src="IMAGES/6.1.jpeg" alt="Product 2">
-                    <div class="product-title">T-Shirt</div>
-                    <div class="product-price">R250</div>
-                    <script>
-                        setInterval(changeImage, 3000);
-                        
-                        var images = ["IMAGES/6.1.jpeg", "IMAGES/6.2.jpeg",];
-                        var index = 1;
-                        
-                        function changeImage() {
-                          document.getElementById("myImage").src = images[index];
-                          index++;
-                          
-                          if (index === images.length) {
-                            index = 0;
-                          }
-                        }
-                      </script>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/7.jpeg" alt="Product 3">
-                    <div class="product-title">T-Shirt</div>
-                    <div class="product-price">R170</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/8.jpeg" alt="Product 4">
-                    <div class="product-title">T-Shirt</div>
-                    <div class="product-price">R189</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/9.jpeg" alt="Product 5">
-                    <div class="product-title">Long Sleeve T-Shirt</div>
-                    <div class="product-price">R220</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/1.jpeg" alt="Product 6">
-                    <div class="product-title">Long Sleeve T-Shirt</div>
-                    <div class="product-price">R200</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/2.jpeg" alt="Product 7">
-                    <div class="product-title">Long Sleeve T-Shirt</div>
-                    <div class="product-price">R200</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/3.jpeg" alt="Product 8">
-                    <div class="product-title">Hoodie</div>
-                    <div class="product-price">R300</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/4.jpeg" alt="Product 9">
-                    <div class="product-title">Cap</div>
-                    <div class="product-price">R130</div>
-                </div>
-                
-                <div class="product">
-                    <img src="IMAGES/5.jpeg" alt="Product 10">
-                    <div class="product-title">Long Sleeve T-Shirt</div>
-                    <div class="product-price">R200</div>
-                </div>
-            </div>
+        <div class="product-item">
+            <img src="IMAGES/9.jpeg" alt="Long Sleeve T-Shirt" height="300px">
+            <div class="product-title">Long Sleeve T-Shirt</div>
+            <div class="product-price">R220</div>
+            <button class="add-to-cart" onclick="addToCart('Long Sleeve T-Shirt', 220)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
 
-<footer>
+        <div class="product-item">
+            <img src="IMAGES/1.jpeg" alt="Long Sleeve T-Shirt" height="300px">
+            <div class="product-title">Long Sleeve T-Shirt</div>
+            <div class="product-price">R200</div>
+            <button class="add-to-cart" onclick="addToCart('Long Sleeve T-Shirt', 200)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
+
+        <div class="product-item">
+            <img src="IMAGES/2.jpeg" alt="Long Sleeve T-Shirt" height="300px">
+            <div class="product-title">Long Sleeve T-Shirt</div>
+            <div class="product-price">R200</div>
+            <button class="add-to-cart" onclick="addToCart('Long Sleeve T-Shirt', 200)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
+
+        <div class="product-item">
+            <img src="IMAGES/3.jpeg" alt="Hoodie" height="300px">
+            <div class="product-title">Hoodie</div>
+            <div class="product-price">R300</div>
+            <button class="add-to-cart" onclick="addToCart('Hoodie', 300)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
+
+        <div class="product-item">
+            <img src="IMAGES/4.jpeg" alt="Cap" height="300px">
+            <div class="product-title">Cap</div>
+            <div class="product-price">R130</div>
+            <button class="add-to-cart" onclick="addToCart('Cap', 130)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
+
+        <div class="product-item">
+            <img src="IMAGES/5.jpeg" alt="Long Sleeve T-Shirt" height="300px">
+            <div class="product-title">Long Sleeve T-Shirt</div>
+            <div class="product-price">R200</div>
+            <button class="add-to-cart" onclick="addToCart('Long Sleeve T-Shirt', 200)">Add to Cart</button>
+            <hr>
+            <br>
+        </div>
+    </div>
+
+
+    </div>
+   
+  </div>
+
+  <footer style="text-align:center; margin-top: 50px;">
     <p>67 DANIE JOUBERT ST, MURTO - Copyright 2021©</p>
-</footer>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCartCount() {
+      document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    function toggleCart() {
+      document.getElementById("cartModal").style.display =
+        document.getElementById("cartModal").style.display === "block" ? "none" : "block";
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItemsDiv = document.getElementById("cart-items");
+      cartItemsDiv.innerHTML = "";
+      let total = 0;
+      cart.forEach(item => {
+        const div = document.createElement("div");
+        div.textContent = `${item.name} - R${item.price}`;
+        cartItemsDiv.appendChild(div);
+        total += item.price;
+      });
+      document.getElementById("cart-total").innerText = total;
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function showCheckout() {
+      document.getElementById("checkoutModal").style.display = "block";
+    }
+
+    function submitOrder() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const address = document.getElementById("address").value;
+
+      if (!name || !email || !address) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      alert("Thank you for your purchase, " + name + "!");
+      cart = [];
+      localStorage.removeItem("cart");
+      updateCartCount();
+      document.getElementById("cartModal").style.display = "none";
+      document.getElementById("checkoutModal").style.display = "none";
+    }
+
+   
+    setInterval(() => {
+      const img = document.getElementById("myImage");
+      const images = ["IMAGES/6.1.jpeg", "IMAGES/6.2.jpeg"];
+      let index = images.indexOf(img.src.split("/").pop());
+      img.src = images[(index + 1) % images.length];
+    }, 3000);
+
+   
+    updateCartCount();
+    
+  </script>
 </body>
 </html>

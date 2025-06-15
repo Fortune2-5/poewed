@@ -2,59 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Murto - Contact Us</title>
     <meta name="description" content="Contact details for Roar - 57 Moyglare Abbey, Dublin, w23c1k2. Phone +353 5465481">
     <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
     <link rel="stylesheet" href="style.css">
-<style>
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    h1 {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .contact-info {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .contact-info div {
-        border-radius: 5px;
-        background-color: #f5f5f5;
-        padding: 20px;
-    }
-    
-    .contact-info h2 {
-        margin: 0;
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-    
-    .contact-info p {
-        margin: 0;
-        margin-bottom: 10px;
-    }
-    a{
-        color: black;
-        text-decoration: none;
-    }
-    ion-icon {
-        height: 30px;
-    }
-    .mm{
-        text-align: center;
-      }
-</style>
+
 </head>
 <body>
+    <style>
+ .mm{
+    text-align: center;
+ }
+        .image-container {
+            text-align: left;
+
+            
+        }
+    .image-container img{
+        width: 10%;
+        
+        overflow: hidden;
+        display: inline-block;
+    }
+
+        .content-box {
+            background-color: rgb(211, 232, 232);
+            color: rgb(0, 0, 0);
+            border-radius: 36px;
+            margin: 15px;
+            padding: 15px;
+        }
+    
+
+.contact-container{ 
+align-items: center;
+display: flex;
+height: 100vh;
+justify-content: space-evenly;
+    
+}
+.contact-left{
+display: flex;
+flex-direction: column;
+align-items: start;
+gap: 20px;
+}
+.contact-left-title h2{
+    font-weight: 600px;
+    color: rgb(18, 18, 20) ;
+    font-size: 30px;
+    margin-bottom: 20px;
+
+
+}
+.contact-left-title hr{
+    border: none;
+    width: 120px;
+    height: 5px;
+    background-color: #aeb0b0;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-left:0px;
+}
+.contact-inputs{
+width: 500px;
+height: 50px;
+border: none;
+outline: none;
+padding-left: 25px;
+font-weight: 50px;
+color: rgb(0, 0, 0);
+border-radius: 50px;
+background-color: rgb(211, 232, 232);
+
+}
+.contact-left textarea {
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+
+}
+.contact-inputs:focus {
+    border: 2px solid red
+
+}
+.contact-left button{
+display: flex;
+align-items: center;
+padding: 15px 30px;
+font-size: 16px;
+color: rgb(151, 157, 164);
+gap: 10px;
+border: none;
+border-radius: 50px;
+background-color: rgb(211, 232, 232) ;
+cursor: pointer;
+
+}
+.contact-right{
+    text-align: right;
+}
+@media(max-width:800px){
+.contact-inputs{
+    width: 80vw;
+}
+.contact-right{
+    display: none;
+}
+}
+.h2{
+    font-family: monospace;
+}
+       
+</style>
     <div class="header-container">
         <header>
             <div class="logo">
@@ -81,69 +143,43 @@
           
             </header>              
             </div>
-<br> <br> <br> <br>
+
 <nav style="height: 100px;"></nav>
-        <div class="container" style=" color: black;">
-            <h3 class="WELCOME"> CONTACT US </h3>
-            <h1> MURTO - WORLD OF THE LIVING DEAD</h1>
-            
+    
+<br>
 
-        <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="hidden" name="access_key" value="1c5af6c0-de8c-44bd-9bce-69c0356cb348">
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
-              <option value="">-- Select Gender --</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Submit">
-          </div>
-        </form>
-        <div class="contact-info">
-           
-        <div>
-            <h2>CUSTOMER SERVICE :</h2>
-            <p>Email: Deadmurto@gmail.com</p>
-            <p>Phone: +27 656 563 574</p>
-            <p>Address: 67 Danie Joubert ST Tzaneen, South Africa</p>
-            
-        </div>
-        <div>
-            <h2>TRADING HOURS :</h2>
-            <p>Monday to Friday: 9:00 AM - 5:00 PM</p>
-            <p>Saturday to Sunday: 9:00 AM - 3:00 PM</p>
-         <h2>SOCIAL MEDIA :</h2>
-         <div class="social=icons">
-            <a href="https://wa.me/+27624206475" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.fa-facebook.com/Marto_Clothing" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.twitter.com/Murto_Clothing" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.tiktok.com/@Murto" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/Marto_Clothing" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            
-        </div>
+<hr>
+<div class="contant-container">
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-left"> 
+    <div class="contact-left-title"> 
+    <h2 style="color: #aeb0b0;">Get in touch</h2>
+    <hr>
+    
+</div>
 
-        </div>
+<input type="hidden" name="access_key" value="1c5af6c0-de8c-44bd-9bce-69c0356cb348">
+<input type="text" name="name" placeholder="Name" class="contact-inputs" required>
+<input type="Surname" name="Surname" placeholder="Surname" class="contact-inputs" required>
+<input type="Cell number" name="Cell number" placeholder="Cell number" class="contact-inputs" required>
+<input type="Email" name="Email" placeholder="Email" class="contact-inputs" required>
+
+<textarea name="message" placeholder="Message" class="contact-inputs"></textarea>
+<button type="reset">Reset</button>
+<button type="submit" >Submit <img src="IMAGES/ARRW.webp" height="14" width=""></button>
+
+    </form>
+
+   
+
     </div>
-    </div>
+</div>
+<br>
+<hr>
+<br>    
+
     <div class="mm">
-        <h4 style="color: black;"><ins>Locate us</ins></h4>
-           <a href="https://www.google.com/maps/place/ flora park 29 mohlopi st"> <ins> Click this text to find us via google maps</ins></a>
+        <h4 style="color:  #aeb0b0;"><ins>Locate us</ins></h4>
+           <a style="color:  #aeb0b0;;" href="https://www.google.com/maps/place/ flora park 29 mohlopi st"> <ins> Click this text to find us via google maps</ins></a>
           </div>
             <footer>
                 <p>67 DANIE JOUBERT ST, MURTO - Copyright 2021©</p>
